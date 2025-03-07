@@ -30,6 +30,11 @@ const navigationItems: INavigationItem[] = [
         label: "Publicos Alvos",
         route: "/dados/publico-alvo",
       },
+      {
+        id: 3,
+        label: "Vídeo",
+        route: "/dados/vídeos",
+      },
     ],
   },
   {
