@@ -153,7 +153,7 @@ export const TagsTable = () => {
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col justify-center gap-4"
           >
-            <div className="flex flex-col">
+            <div className="flex w-96 flex-col">
               <Input
                 label="Tag"
                 type="text"

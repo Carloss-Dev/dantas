@@ -24,7 +24,7 @@ export const Modal = ({
       <Dialog.Trigger asChild>{modalButton}</Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="data-[state=open]:animate-overlay-show fixed inset-0 cursor-pointer bg-black/50" />
-        <Dialog.Content className="data-[state=open]:animate-content-show fixed top-1/2 left-1/2 flex max-h-[85vh] w-[90vw] max-w-[500px] -translate-x-1/2 -translate-y-1/2 flex-col justify-center gap-1.5 rounded-md border bg-white p-[25px] shadow-lg focus:outline-none">
+        <Dialog.Content className="data-[state=open]:animate-content-show fixed top-1/2 left-1/2 flex max-h-[85vh] w-fit max-w-3xl -translate-x-1/2 -translate-y-1/2 flex-col justify-center gap-1.5 rounded-md border bg-white p-[25px] shadow-lg focus:outline-none">
           <Dialog.Title className="m-0 text-3xl font-bold tracking-wider text-neutral-900">
             {title}
           </Dialog.Title>
