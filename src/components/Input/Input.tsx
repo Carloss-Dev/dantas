@@ -41,17 +41,21 @@ export const Input = <T extends FieldValues>({
 }: IPropsInput<T>) => {
   return (
     <div className={`flex flex-col gap-1 ${className}`}>
-      <label
-        htmlFor={id}
-        className="text-md inline-flex justify-between font-bold tracking-wider"
-      >
-        {label} {required && "*"}
-        {errors && (
-          <span className="block self-end text-sm text-red-500">
-            {errors.message}
+      {label && (
+        <label
+          htmlFor={id}
+          className="text-md inline-flex justify-between font-bold tracking-wider"
+        >
+          <span>
+            {label} {required && <span className="text-red-500"> * </span>}
           </span>
-        )}
-      </label>
+          {errors && (
+            <span className="block self-end text-sm text-red-500">
+              {errors.message}
+            </span>
+          )}
+        </label>
+      )}
       <div className="relative h-11 w-full">
         <input
           type={type}
