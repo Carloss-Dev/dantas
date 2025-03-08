@@ -88,7 +88,7 @@ export const VideoTable = () => {
   }
 
   return (
-    <section className="col-span-12 flex flex-col items-center justify-center gap-3 pt-6 md:col-start-4 md:col-end-10 md:bg-black">
+    <section className="col-span-12 flex flex-col items-center justify-center gap-3 pt-6">
       <Table
         columns={columns}
         titleContent={
@@ -114,7 +114,7 @@ export const VideoTable = () => {
             onSubmit={handleSubmit(onSubmit)}
             className="flex w-[700px] flex-col justify-center gap-4"
           >
-            <div className="flex flex-row gap-2">
+            <div className="flex flex-row gap-5">
               <Input
                 label="URL"
                 type="text"

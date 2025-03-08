@@ -95,6 +95,7 @@ export const TagsTable = () => {
     columnHelper.accessor("tag", {
       header: "Tags",
       cell: (info) => info.renderValue(),
+      size: 300,
     }),
     columnHelper.display({
       id: "actions",
