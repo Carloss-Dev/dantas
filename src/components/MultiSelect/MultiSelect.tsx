@@ -4,7 +4,7 @@ import { Popover, Separator, Tooltip } from "radix-ui";
 import React from "react";
 
 interface IMultiSelectProps {
-  options: string[];
+  options?: string[];
   placeholder?: string;
   onChange?: (selected: string[]) => void;
 }
@@ -19,7 +19,7 @@ export const MultiSelect = ({
   const [query, setQuery] = React.useState<string>("");
   const maxVisibleTags = 3;
 
-  const filteredOptions = options.filter((option) =>
+  const filteredOptions = options?.filter((option) =>
     option.toLowerCase().includes(query.toLowerCase())
   );
 
@@ -120,8 +120,8 @@ export const MultiSelect = ({
             onChange={(e) => setQuery(e.target.value)}
           />
           <ul className="mt-2 max-h-40 overflow-y-auto">
-            {filteredOptions.length > 0 ? (
-              filteredOptions.map((option) => (
+            {filteredOptions && filteredOptions.length > 0 ? (
+              filteredOptions?.map((option) => (
                 <li
                   key={option}
                   className="hover:text-primary hover:bg-primary/20 flex cursor-pointer items-center gap-2 rounded-md p-2 text-sm"

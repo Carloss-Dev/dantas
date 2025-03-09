@@ -61,6 +61,7 @@ export const TagsTable = () => {
     reset({ id: 0, tag: "" });
     setModal(false);
   }
+
   function handleActions(e: React.MouseEvent, id: number | undefined) {
     if (e.currentTarget instanceof HTMLElement) {
       const method = e.currentTarget.dataset.action;

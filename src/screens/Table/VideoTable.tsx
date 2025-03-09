@@ -1,6 +1,7 @@
 import { Button } from "@components/Button/Button";
 import { Input } from "@components/Input/Input";
 import { Modal } from "@components/Modal/Modal";
+import { MultiSelect } from "@components/MultiSelect/MultiSelect";
 import { Table } from "@components/Table/Table";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Icon } from "@iconify-icon/react/dist/iconify.mjs";
@@ -134,6 +135,9 @@ export const VideoTable = () => {
                 className="w-full"
                 {...register("name")}
               />
+            </div>
+            <div className="flex flex-row gap-5">
+              <MultiSelect />
             </div>
 
             <Button type="submit" className="mt-6 h-10 w-60 self-end">
