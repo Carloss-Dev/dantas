@@ -12,6 +12,7 @@ export class LocalStorageDB<T> {
    *
    * @param {string} key - A chave usada para armazenar os dados no LocalStorage.
    */
+
   constructor(key: string) {
     this.key = key;
     this.id = Number.parseInt(
