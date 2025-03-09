@@ -14,10 +14,10 @@ const videoSchema = z.object({
   id: z.number().optional(),
   url: z.string().url({ message: "Url inválida" }),
   name: z.string().min(1, { message: "Digite um nome para o vídeo" }),
-  tags: z.array(string()).nonempty({ message: "Selecione ao menos 1 tag" }),
+  tags: z.string().array().min(1, { message: "Deve conter no mínimo 1 tag" }),
   targetAudience: z
     .array(string())
-    .nonempty({ message: "Selecione ao menos 1 público alvo" }),
+    .min(1, { message: "Deve conter no mínimo 1 público alvo" }),
 });
 
 interface IVideoFormData extends z.infer<typeof videoSchema> {}
@@ -30,6 +30,7 @@ export const VideoTable = () => {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm<IVideoFormData>({
     resolver: zodResolver(videoSchema),
@@ -85,6 +86,14 @@ export const VideoTable = () => {
     console.log(data);
   }
 
+  const handleTagsChange = (selectedTags: string[]) => {
+    setValue("tags", [...selectedTags]);
+  };
+
+  const handleTargetChange = (selectedTags: string[]) => {
+    setValue("targetAudience", [...selectedTags]);
+  };
+
   return (
     <section className="col-span-12 flex flex-col items-center justify-center gap-3 pt-6">
       <Table
@@ -131,14 +140,55 @@ export const VideoTable = () => {
                 required
                 register={register}
                 errors={errors?.name}
-                placeholder="Digitre"
+                placeholder="Digite"
                 className="w-full"
                 {...register("name")}
               />
             </div>
-            <div className="flex flex-row gap-5">
-              <MultiSelect />
-            </div>
+            <MultiSelect
+              maxVisibleItems={6}
+              label="Tags"
+              required
+              placeholder="Selecione uma tag"
+              errors={errors.tags?.message}
+              onChange={handleTagsChange}
+              options={[
+                "Aoba",
+                "aoba2",
+                "aoba3",
+                "aoba65",
+                "aoba90",
+                "aoda9ud",
+                "aiougbdoasiud",
+                "aiougbdoasiudadasd",
+                "aiougbdoasiuddsadasd",
+                "aiougbdoasiudadadas",
+                "aiougbdoasiudasdadas",
+                "aiougbdoasiuddasdsa",
+              ]}
+            />
+            <MultiSelect
+              maxVisibleItems={6}
+              label="Público alvo"
+              placeholder="Selecione um público alvo"
+              required
+              errors={errors.targetAudience?.message}
+              onChange={handleTargetChange}
+              options={[
+                "Aoba",
+                "aoba2",
+                "aoba3",
+                "aoba65",
+                "aoba90",
+                "aoda9ud",
+                "aiougbdoasiud",
+                "aiougbdoasiudadasd",
+                "aiougbdoasiuddsadasd",
+                "aiougbdoasiudadadas",
+                "aiougbdoasiudasdadas",
+                "aiougbdoasiuddasdsa",
+              ]}
+            />
 
             <Button type="submit" className="mt-6 h-10 w-60 self-end">
               Cadastrar
