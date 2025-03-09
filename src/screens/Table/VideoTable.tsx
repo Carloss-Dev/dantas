@@ -45,10 +45,7 @@ export const VideoTable = () => {
       id: "name",
       header: "Nome",
     }),
-    columnHelper.accessor((row) => row.url, {
-      id: "url",
-      header: "URL",
-    }),
+
     columnHelper.accessor((row) => row.tags.join(", "), {
       id: "tags",
       header: "Tags",
