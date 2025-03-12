@@ -4,93 +4,68 @@ import { Modal } from "@components/Modal/Modal";
 import { Table } from "@components/Table/Table";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Icon } from "@iconify-icon/react/dist/iconify.mjs";
+import { TagsPresenter } from "@presenter/tags.presenter";
+import { type ITag, tagSchema } from "@service/tags.service";
 import { createColumnHelper } from "@tanstack/react-table";
-import { LocalStorageDB } from "@utils/localStorageDB.utils";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-
-const tagSchema = z.object({
-  id: z.number().optional(),
-  tag: z
-    .string()
-    .min(2, "Mínimo de 2 caracteres")
-    .max(20, "Máximo de 20 caracteres"),
-});
-
-// Nesse trecho é criada uma interface seguindo como esquema, o esquema do zod criado acima
-interface ITagFormData extends z.infer<typeof tagSchema> {}
-
-let formAction: "create" | "update" = "create";
 
 export const TagsTable = () => {
-  const localDB = new LocalStorageDB<ITagFormData>("tags");
-
   const [modal, setModal] = React.useState<boolean>(false);
-  const [tags, setTags] = React.useState<ITagFormData[]>([]);
+  const presenter = new TagsPresenter();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<ITagFormData>({
+  } = useForm<ITag>({
     resolver: zodResolver(tagSchema),
   });
 
-  const refreshTags = React.useCallback(() => {
-    const DBTags = localDB.getAll();
-    setTags(DBTags);
-  }, [localDB.getAll]);
+  // function onSubmit(data: ITag) {
+  //   if (formAction === "create") {
+  //     localDB.create(data);
+  //   }
 
-  React.useEffect(() => {
-    refreshTags();
-  }, [refreshTags]);
+  //   if (formAction === "update" && data.id) {
+  //     localDB.update(data.id, data);
+  //   }
 
-  function onSubmit(data: ITagFormData) {
-    if (formAction === "create") {
-      localDB.create(data);
-    }
+  //   formAction = "create";
+  //   reset();
+  //   setModal(false);
+  // }
 
-    if (formAction === "update" && data.id) {
-      localDB.update(data.id, data);
-    }
+  // function handleActions(e: React.MouseEvent, id: number | undefined) {
+  //   if (e.currentTarget instanceof HTMLElement) {
+  //     const method = e.currentTarget.dataset.action;
 
-    formAction = "create";
-    refreshTags();
-    reset({ id: 0, tag: "" });
-    setModal(false);
-  }
+  //     if (id) {
+  //       switch (method) {
+  //         case "update": {
+  //           const data = localDB.getById(id);
+  //           console.log(data);
 
-  function handleActions(e: React.MouseEvent, id: number | undefined) {
-    if (e.currentTarget instanceof HTMLElement) {
-      const method = e.currentTarget.dataset.action;
+  //           setModal(true);
+  //           reset(data);
+  //           formAction = "update";
+  //           break;
+  //         }
+  //         case "remove":
+  //           localDB.remove(id);
+  //           break;
 
-      if (id) {
-        switch (method) {
-          case "update": {
-            const data = localDB.getById(id);
-            console.log(data);
+  //         default:
+  //           console.log("Erro");
+  //           break;
+  //       }
+  //       refreshTags();
+  //     }
+  //   }
+  // }
 
-            setModal(true);
-            reset(data);
-            formAction = "update";
-            break;
-          }
-          case "remove":
-            localDB.remove(id);
-            break;
-
-          default:
-            console.log("Erro");
-            break;
-        }
-        refreshTags();
-      }
-    }
-  }
-
-  const columnHelper = createColumnHelper<ITagFormData>();
+  const columnHelper = createColumnHelper<ITag>();
 
   const columns = [
     columnHelper.accessor("tag", {
@@ -110,7 +85,7 @@ export const TagsTable = () => {
             className="cursor-pointer"
             title="Editar registro"
             data-action="update"
-            onClick={(e: React.MouseEvent) => handleActions(e, row.original.id)}
+            // onClick={(e: React.MouseEvent) => handleActions(e, row.original.id)}
           />
           <Icon
             icon="pixelarticons:trash"
@@ -119,7 +94,7 @@ export const TagsTable = () => {
             height="2em"
             title="Excluir registro"
             data-action="remove"
-            onClick={(e: React.MouseEvent) => handleActions(e, row.original.id)}
+            // onClick={(e: React.MouseEvent) => handleActions(e, row.original.id)}
           />
         </div>
       ),
@@ -129,7 +104,7 @@ export const TagsTable = () => {
   return (
     <section className="col-span-12 flex flex-col items-center justify-center gap-3 pt-6">
       <Table
-        data={tags}
+        data={presenter.loadTags()}
         columns={columns}
         titleContent={
           <button
@@ -152,7 +127,7 @@ export const TagsTable = () => {
         description="Formulário para cadastro de tags"
         content={
           <form
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit(presenter.onSubmitAdd)}
             className="flex flex-col justify-center gap-4"
           >
             <div className="flex w-96 flex-col">

@@ -29,7 +29,9 @@
       "@pages/*": ["src/pages/*"],
       "@hooks/*": ["src/hooks/*"],
       "@utils/*": ["src/utils/*"],
-      "@screens/*": ["src/screens/*"]
+      "@screens/*": ["src/screens/*"],
+      "@presenter/*": ["src/presenter/*"],
+      "@service/*": ["src/service/*"]
     }
   },
   "include": ["src"]

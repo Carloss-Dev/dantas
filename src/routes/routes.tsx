@@ -1,10 +1,10 @@
 import { GridArea } from "@components/Layout/GridArea";
+import { Home } from "@screens/Home";
+import { Page404 } from "@screens/Page404";
+import { TagsTable } from "@screens/Table/TagsTable";
+import { TargetAudienceTable } from "@screens/Table/TargetAudienceTable";
+import { VideoTable } from "@screens/Table/VideoTable";
 import { HashRouter, Route, Routes } from "react-router-dom";
-import { Home } from "src/screens/Home";
-import { Page404 } from "src/screens/Page404";
-import { TagsTable } from "src/screens/Table/TagsTable";
-import { TargetAudienceTable } from "src/screens/Table/TargetAudienceTable";
-import { VideoTable } from "src/screens/Table/VideoTable";
 
 export const AppRoutes = () => {
   return (
