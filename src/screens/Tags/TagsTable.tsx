@@ -1,27 +1,15 @@
-import { Button } from "@components/Button/Button";
-import { Input } from "@components/Input/Input";
 import { Modal } from "@components/Modal/Modal";
 import { Table } from "@components/Table/Table";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useTags } from "@contexts/Tags.context";
 import { Icon } from "@iconify-icon/react/dist/iconify.mjs";
-import { TagsPresenter } from "@presenter/tags.presenter";
-import { type ITag, tagSchema } from "@service/tags.service";
+import type { ITag } from "@schemas/tags.schema";
 import { createColumnHelper } from "@tanstack/react-table";
 import React from "react";
-import { useForm } from "react-hook-form";
+import TagsForm from "./TagsForm";
 
 export const TagsTable = () => {
   const [modal, setModal] = React.useState<boolean>(false);
-  const presenter = new TagsPresenter();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<ITag>({
-    resolver: zodResolver(tagSchema),
-  });
+  const { tags } = useTags();
 
   // function onSubmit(data: ITag) {
   //   if (formAction === "create") {
@@ -104,7 +92,7 @@ export const TagsTable = () => {
   return (
     <section className="col-span-12 flex flex-col items-center justify-center gap-3 pt-6">
       <Table
-        data={presenter.loadTags()}
+        data={tags}
         columns={columns}
         titleContent={
           <button
@@ -121,34 +109,11 @@ export const TagsTable = () => {
         }
       />
       <Modal
-        active={modal}
-        setActive={setModal}
+        modalControl={modal}
+        setModalControl={setModal}
         title="Cadastrar Tags"
         description="Formulário para cadastro de tags"
-        content={
-          <form
-            onSubmit={handleSubmit(presenter.onSubmitAdd)}
-            className="flex flex-col justify-center gap-4"
-          >
-            <div className="flex w-96 flex-col">
-              <Input
-                label="Tag"
-                type="text"
-                id="tag"
-                required
-                register={register}
-                errors={errors?.tag}
-                placeholder="Digite a Tag"
-                className="w-full"
-                {...register("tag")}
-              />
-            </div>
-
-            <Button type="submit" className="mt-6 h-10 w-60 self-end">
-              Cadastrar
-            </Button>
-          </form>
-        }
+        content={<TagsForm />}
       />
     </section>
   );
