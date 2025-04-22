@@ -1,13 +1,13 @@
 import { Icon } from "@iconify-icon/react/dist/iconify.mjs";
 import { Dialog } from "radix-ui";
-import type React from "react";
+import React from "react";
 
 interface IPropsModal {
   modalButton?: React.ReactNode;
   title?: string;
   description?: string;
-  active: boolean;
-  setActive: React.Dispatch<React.SetStateAction<boolean>>;
+  modalControl?: boolean;
+  setModalControl?: React.Dispatch<React.SetStateAction<boolean>>;
   content: React.ReactNode;
 }
 
@@ -16,11 +16,16 @@ export const Modal = ({
   title,
   description,
   content,
-  setActive,
-  active,
+  setModalControl,
+  modalControl,
 }: IPropsModal) => {
+  const [isActive, setIsActive] = React.useState<boolean>(false);
+
   return (
-    <Dialog.Root onOpenChange={setActive} open={active}>
+    <Dialog.Root
+      onOpenChange={setModalControl ?? setIsActive}
+      open={modalControl ?? isActive}
+    >
       <Dialog.Trigger asChild>{modalButton}</Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="data-[state=open]:animate-overlay-show fixed inset-0 cursor-pointer bg-black/50" />

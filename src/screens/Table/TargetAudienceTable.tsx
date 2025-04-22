@@ -146,7 +146,7 @@ export const TargetAudienceTable = () => {
         }
       />
       <Modal
-        active={modal}
+        modalControl={modal}
         setActive={setModal}
         title="Cadastrar Público alvo"
         description="Formulário para cadastro de público alvo"

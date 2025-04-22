@@ -30,8 +30,9 @@
       "@hooks/*": ["src/hooks/*"],
       "@utils/*": ["src/utils/*"],
       "@screens/*": ["src/screens/*"],
-      "@presenter/*": ["src/presenter/*"],
-      "@service/*": ["src/service/*"]
+      "@contexts/*": ["src/contexts/*"],
+      "@service/*": ["src/service/*"],
+      "@schemas/*": ["src/schemas/*"]
     }
   },
   "include": ["src"]

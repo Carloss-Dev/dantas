@@ -112,7 +112,7 @@ export const VideoTable = () => {
         }
       />
       <Modal
-        active={modal}
+        modalControl={modal}
         setActive={setModal}
         title="Cadastrar Vídeo"
         description="Formulário para cadastro de vídeo"
