@@ -1,5 +1,5 @@
-import { Modal } from "@components/Modal/Modal";
-import { Table } from "@components/Table/Table";
+import { Modal } from "@components/ui/Modal";
+import { Table } from "@components/ui/Table";
 import { useTags } from "@contexts/Tags.context";
 import { Icon } from "@iconify-icon/react/dist/iconify.mjs";
 import type { ITag } from "@schemas/tags.schema";
