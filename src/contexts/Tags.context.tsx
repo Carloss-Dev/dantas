@@ -4,7 +4,8 @@ import React from "react";
 
 interface ITagsContext {
   handleGetTags: () => ITag[];
-  onSubmit: (data: ITag) => void;
+  handleCreate: (data: ITag) => void;
+  handleUpdate: (data: ITag) => void;
   tags: ITag[];
   setTags: React.Dispatch<React.SetStateAction<ITag[]>>;
 }
@@ -24,15 +25,25 @@ export const TagsProvider = ({ children }: ITagsContextProviderProps) => {
   }, []);
 
   function handleGetTags() {
-    return tagsServiceInstance.getAll();
+    const currentTags = tagsServiceInstance.getAll();
+
+    setTags(currentTags);
+
+    return tags;
   }
 
-  function onSubmit(data: ITag) {
+  function handleCreate(data: ITag) {
+    tagsServiceInstance.create(data);
+  }
+
+  function handleUpdate(data: ITag) {
     console.log(data);
   }
 
   return (
-    <TagsContext.Provider value={{ onSubmit, handleGetTags, tags, setTags }}>
+    <TagsContext.Provider
+      value={{ handleCreate, handleUpdate, handleGetTags, tags, setTags }}
+    >
       {children}
     </TagsContext.Provider>
   );

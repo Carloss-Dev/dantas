@@ -1,4 +1,4 @@
-import { GridArea } from "@components/Layout/GridArea";
+import { GridArea } from "@components/layout/GridArea";
 import { TagsProvider } from "@contexts/Tags.context";
 import { Home } from "@screens/Home";
 import { Page404 } from "@screens/Page404";

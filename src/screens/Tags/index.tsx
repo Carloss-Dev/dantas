@@ -1,4 +1,4 @@
-import { TagsTable } from "./TagsTable";
+import { TagsTable } from "@components/tags/TagsTable";
 
 const Tags = () => {
   return (

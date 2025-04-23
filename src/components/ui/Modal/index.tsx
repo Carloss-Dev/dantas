@@ -16,8 +16,8 @@ export const Modal = ({
   title,
   description,
   content,
-  setModalControl,
-  modalControl,
+  setModalControl = undefined,
+  modalControl = undefined,
 }: IPropsModal) => {
   const [isActive, setIsActive] = React.useState<boolean>(false);
 
