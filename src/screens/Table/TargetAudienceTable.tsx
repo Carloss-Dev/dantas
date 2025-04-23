@@ -1,7 +1,7 @@
-import { Button } from "@components/Button/Button";
-import { Input } from "@components/Input/Input";
-import { Modal } from "@components/Modal/Modal";
-import { Table } from "@components/Table/Table";
+import { Button } from "@components/ui/Button";
+import { Input } from "@components/ui/Input";
+import { Modal } from "@components/ui/Modal";
+import { Table } from "@components/ui/Table";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Icon } from "@iconify-icon/react/dist/iconify.mjs";
 import { createColumnHelper } from "@tanstack/react-table";

@@ -1,4 +1,4 @@
-import { Input } from "@components/Input/Input";
+import { Input } from "@components/ui/Input";
 import { Icon } from "@iconify-icon/react";
 import { Popover, Separator, Tooltip } from "radix-ui";
 import React from "react";

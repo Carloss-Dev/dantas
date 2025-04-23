@@ -1,5 +1,5 @@
-import { Button } from "@components/Button/Button";
-import { Input } from "@components/Input/Input";
+import { Button } from "@components/ui/Button";
+import { Input } from "@components/ui/Input";
 import { useTags } from "@contexts/Tags.context";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type ITag, tagsSchema } from "@schemas/tags.schema";
