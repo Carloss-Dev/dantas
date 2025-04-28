@@ -11,11 +11,11 @@ import {
   TargetAudiencePage,
   VideoPage,
 } from "@/screens";
-import { HashRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 export const AppRoutes = () => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <GridArea>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -50,6 +50,6 @@ export const AppRoutes = () => {
           <Route path="/*" element={<Page404 />} />
         </Routes>
       </GridArea>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
