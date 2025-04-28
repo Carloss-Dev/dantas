@@ -1,10 +1,16 @@
-import { GridArea } from "@components/layout/GridArea";
-import { TagsProvider } from "@contexts/Tags.context";
-import { Home } from "@screens/Home";
-import { Page404 } from "@screens/Page404";
-import { TargetAudienceTable } from "@screens/Table/TargetAudienceTable";
-import { VideoTable } from "@screens/Table/VideoTable";
-import Tags from "@screens/Tags/";
+import { GridArea } from "@/components/layout/GridArea";
+import {
+  TagsProvider,
+  TargetAudienceProvider,
+  VideoProvider,
+} from "@/contexts";
+import {
+  Home,
+  Page404,
+  TagPage,
+  TargetAudiencePage,
+  VideoPage,
+} from "@/screens";
 import { HashRouter, Route, Routes } from "react-router-dom";
 
 export const AppRoutes = () => {
@@ -17,12 +23,30 @@ export const AppRoutes = () => {
             path="/dados/tags"
             element={
               <TagsProvider>
-                <Tags />
+                <TagPage />
               </TagsProvider>
             }
           />
-          <Route path="/dados/publico-alvo" element={<TargetAudienceTable />} />
-          <Route path="/dados/vídeos" element={<VideoTable />} />
+          <Route
+            path="/dados/publico-alvo"
+            element={
+              <TargetAudienceProvider>
+                <TargetAudiencePage />
+              </TargetAudienceProvider>
+            }
+          />
+          <Route
+            path="/dados/vídeos"
+            element={
+              <TagsProvider>
+                <TargetAudienceProvider>
+                  <VideoProvider>
+                    <VideoPage />
+                  </VideoProvider>
+                </TargetAudienceProvider>
+              </TagsProvider>
+            }
+          />
           <Route path="/*" element={<Page404 />} />
         </Routes>
       </GridArea>

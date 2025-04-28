@@ -6,7 +6,7 @@ export const Page404 = () => {
       <h2 className="text-4xl font-bold tracking-tight">
         404 Página não encontrada...
       </h2>
-      <img src={marioCorrendo} alt="" />
+      <img src={marioCorrendo} alt="Mario correndo" />
     </section>
   );
 };

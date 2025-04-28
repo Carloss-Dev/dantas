@@ -25,14 +25,7 @@
     /* Aliases */
     "baseUrl": "./",
     "paths": {
-      "@components/*": ["src/components/*"],
-      "@pages/*": ["src/pages/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@utils/*": ["src/utils/*"],
-      "@screens/*": ["src/screens/*"],
-      "@contexts/*": ["src/contexts/*"],
-      "@service/*": ["src/service/*"],
-      "@schemas/*": ["src/schemas/*"]
+      "@/*": ["src/*"]
     }
   },
   "include": ["src"]

@@ -1,6 +1,6 @@
-import { Button } from "@components/ui/Button";
-import { Input } from "@components/ui/Input";
-import { MultiSelect } from "@components/ui/MultiSelect";
+import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
+import { MultiSelect } from "@/components/ui/MultiSelect";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
