@@ -7,13 +7,11 @@ interface IPropsGridArea {
 
 export const GridArea = ({ children }: IPropsGridArea) => {
   return (
-    <main className="grid h-screen w-screen grid-cols-12 grid-rows-[50px_1fr_50px] bg-white">
-      <header className="col-span-12 row-span-1">
+    <main className="flex min-h-screen w-full flex-col bg-white">
+      <header className="h-15 w-full">
         <Navbar />
       </header>
-      <section className="col-span-12 row-start-2 row-end-3 grid grid-cols-12 p-4">
-        {children}
-      </section>
+      <section className="w-full py-10">{children}</section>
     </main>
   );
 };

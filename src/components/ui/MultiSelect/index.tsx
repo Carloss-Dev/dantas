@@ -1,4 +1,4 @@
-import { Input } from "@components/ui/Input";
+import { Input } from "@/components/ui/Input";
 import { Icon } from "@iconify-icon/react";
 import { Popover, Separator, Tooltip } from "radix-ui";
 import React from "react";
@@ -40,9 +40,7 @@ export const MultiSelect = ({
       : [...selected, option];
 
     setSelected(newSelection);
-    console.log(newSelection);
 
-    // Integração com o hookForm
     onChange?.(newSelection);
   }
 
@@ -50,10 +48,6 @@ export const MultiSelect = ({
     setSelected([]);
     onChange?.(selected);
   }
-
-  React.useEffect(() => {
-    console.log(selected);
-  }, [selected]);
 
   const visibleTags = selected.slice(0, maxVisibleItems);
   const hiddenTagsCount = selected.length - visibleTags.length;

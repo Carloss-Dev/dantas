@@ -1,7 +1,7 @@
-import { type ITag, tagsSchema } from "@schemas/tags.schema";
-import { LocalStorageDB } from "@utils/localStorageDB.utils";
+import { type ITag, tagsSchema } from "@/schemas/tags.schema";
+import { LocalStorageDB } from "@/utils/localStorageDB.utils";
 
-export class TagsService {
+export class TagService {
   private db: LocalStorageDB<ITag>;
 
   constructor() {
