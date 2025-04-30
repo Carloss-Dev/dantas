@@ -29,6 +29,9 @@ export const TargetAudienceTable = () => {
     columnHelper.accessor("targetAudience", {
       header: "Público alvo",
       cell: (info) => info.renderValue(),
+      meta: {
+        filterLabel: "público alvo",
+      },
     }),
     columnHelper.display({
       id: "actions",

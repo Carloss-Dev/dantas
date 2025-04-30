@@ -64,7 +64,7 @@ export const TagForm = ({ defaultValues, type = "create" }: ITagFormProps) => {
         modalButton={
           type === "create" ? (
             <button
-              className="mb-3 block cursor-pointer font-bold tracking-wider text-neutral-500 underline"
+              className="block cursor-pointer font-bold tracking-wider text-neutral-500 underline"
               title="Cadastrar novo registro"
             >
               Cadastrar Novo
