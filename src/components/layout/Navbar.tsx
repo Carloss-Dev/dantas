@@ -51,6 +51,11 @@ const navigationItems: INavigationItem[] = [
         label: "Tabela",
         route: "/tabela",
       },
+      {
+        id: 3,
+        label: "popover",
+        route: "/popover",
+      },
     ],
   },
 ];

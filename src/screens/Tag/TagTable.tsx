@@ -31,6 +31,9 @@ export const TagTable = () => {
       header: "Tags",
       cell: (info) => info.renderValue(),
       size: 300,
+      meta: {
+        filterLabel: "tag",
+      },
     }),
     columnHelper.display({
       id: "actions",

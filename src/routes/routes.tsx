@@ -1,4 +1,5 @@
 import { GridArea } from "@/components/layout/GridArea";
+import { CustomPopover } from "@/components/ui/Popover";
 import {
   TagsProvider,
   TargetAudienceProvider,
@@ -48,6 +49,16 @@ export const AppRoutes = () => {
             }
           />
           <Route path="/*" element={<Page404 />} />
+
+          <Route
+            path="/popover"
+            element={
+              <section className="flex items-center justify-center">
+                {" "}
+                <CustomPopover />
+              </section>
+            }
+          />
         </Routes>
       </GridArea>
     </BrowserRouter>
