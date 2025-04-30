@@ -28,16 +28,25 @@ export const VideoTable = () => {
     columnHelper.accessor((row) => row.name, {
       id: "name",
       header: "Nome",
+      meta: {
+        filterLabel: "nome",
+      },
     }),
 
     columnHelper.accessor((row) => row.tags.join(", "), {
       id: "tags",
       header: "Tags",
+      meta: {
+        filterLabel: "tag",
+      },
     }),
 
     columnHelper.accessor((row) => row.targetAudience.join(", "), {
       id: "targetAudience",
       header: "Público alvo",
+      meta: {
+        filterLabel: "público alvo",
+      },
     }),
 
     columnHelper.display({
