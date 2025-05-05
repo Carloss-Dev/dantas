@@ -30,7 +30,7 @@ export const TagTable = () => {
     columnHelper.accessor("tag", {
       header: "Tags",
       cell: (info) => info.renderValue(),
-      size: 300,
+      size: 150,
       meta: {
         filterLabel: "tag",
       },
@@ -52,9 +52,13 @@ export const TagTable = () => {
                 <Icon
                   icon="pixelarticons:trash"
                   className="cursor-pointer"
-                  width="2em"
-                  height="2em"
+                  width="24"
+                  height="24"
                   title="Excluir registro"
+                  style={{
+                    minWidth: "24px",
+                    minHeight: "24px",
+                  }}
                 />
               }
             />
@@ -69,6 +73,7 @@ export const TagTable = () => {
       <Table
         data={tags}
         columns={columns}
+        style={{ width: "300px" }}
         titleContent={<TagForm type="create" />}
       />
     </>

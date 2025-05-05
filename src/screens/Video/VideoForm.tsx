@@ -82,10 +82,14 @@ export const VideoForm = ({ defaultValues, type }: IVideoFormProps) => {
         ) : (
           <Icon
             icon="lucide:edit"
-            width="2em"
-            height="2em"
+            width="24"
+            height="24"
             className="cursor-pointer"
             title="Editar registro"
+            style={{
+              minWidth: "24px",
+              minHeight: "24px",
+            }}
           />
         )
       }
