@@ -29,6 +29,7 @@ export const TargetAudienceTable = () => {
     columnHelper.accessor("targetAudience", {
       header: "Público alvo",
       cell: (info) => info.renderValue(),
+      size: 100,
       meta: {
         filterLabel: "público alvo",
       },
@@ -48,9 +49,13 @@ export const TargetAudienceTable = () => {
               <Icon
                 icon="pixelarticons:trash"
                 className="cursor-pointer"
-                width="2em"
-                height="2em"
+                width="24"
+                height="24"
                 title="Excluir registro"
+                style={{
+                  minWidth: "24px",
+                  minHeight: "24px",
+                }}
               />
             }
           />
@@ -60,12 +65,13 @@ export const TargetAudienceTable = () => {
   ];
 
   return (
-    <section className="col-span-12 flex flex-col items-center justify-center gap-3 pt-6">
+    <>
       <Table
         data={targetAudiences}
         columns={columns}
+        style={{ width: "400px" }}
         titleContent={<TargetAudienceForm type="create" />}
       />
-    </section>
+    </>
   );
 };

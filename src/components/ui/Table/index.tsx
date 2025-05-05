@@ -24,6 +24,7 @@ interface IPropsTable<T> {
   data?: T[];
   columns: ColumnDef<T, string>[];
   titleContent?: React.ReactNode;
+  style?: React.CSSProperties;
 }
 
 interface IStatePagination {
@@ -31,7 +32,12 @@ interface IStatePagination {
   pageSize: number;
 }
 
-export const Table = <T,>({ columns, data, titleContent }: IPropsTable<T>) => {
+export const Table = <T,>({
+  columns,
+  data,
+  titleContent,
+  style,
+}: IPropsTable<T>) => {
   const [pagination, setPagination] = React.useState<IStatePagination>({
     pageIndex: 0,
     pageSize: 5,
@@ -65,72 +71,90 @@ export const Table = <T,>({ columns, data, titleContent }: IPropsTable<T>) => {
   }
 
   return (
-    <section className="h-fit w-fit rounded-lg border border-gray-200 bg-white p-4">
-      <div className="flex items-center justify-between pb-5">
+    <section
+      className="w-3/4 rounded-lg border border-gray-200 bg-white p-2 sm:p-4"
+      style={style}
+    >
+      <div className="h-10 min-h-[40px] w-full">
+        {titleContent && titleContent}
+      </div>
+
+      <header className="flex items-center justify-between border-x border-t border-gray-300 p-3">
         <button
           aria-label="Remover Filtro"
-          className="flex w-30 cursor-pointer justify-center gap-3 self-end rounded border border-gray-300 p-0.5 duration-100 hover:shadow-[inset_0_35px_35px_#f3f4f6]"
+          className="flex w-30 cursor-pointer justify-center gap-3 self-end rounded border border-gray-300 p-0.5 text-sm duration-100 hover:shadow-[inset_0_35px_35px_#f3f4f6] sm:text-base"
           onClick={clearFilters}
         >
-          <Icon icon="mdi:filter-off-outline" width="24" height="24" />{" "}
+          <Icon icon="mdi:filter-off-outline" width="20" height="20" />
           <span>Limpar</span>
         </button>
-        {titleContent && <div className="flex items-end">{titleContent}</div>}
-      </div>
-      <div className="h-[410px] min-w-96 overflow-hidden rounded-lg border border-gray-300">
-        <table className="min-w-full">
+      </header>
+
+      <div className="h-full w-full overflow-x-auto">
+        <table className="h-full w-full border-collapse">
           <thead className="bg-gray-50">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <th
-                    key={header.id}
-                    className="border-b border-gray-300 px-4 py-3 text-left text-lg font-bold tracking-wide text-gray-600"
-                  >
-                    <div className="flex w-full items-center gap-4">
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <th
+                      key={header.id}
+                      scope="col"
+                      className="border border-gray-300 px-3 py-2 text-left text-sm font-semibold text-gray-700 sm:px-4 sm:text-base"
+                    >
+                      <div className="flex w-full items-center justify-between gap-2">
+                        {!header.isPlaceholder &&
+                          flexRender(
                             header.column.columnDef.header,
                             header.getContext()
                           )}
-
-                      {header.column.columnDef.meta?.filterLabel && (
-                        <TableFilterPopover column={header.column} />
-                      )}
-                    </div>
-                  </th>
-                ))}
+                        {header.column.columnDef.meta?.filterLabel && (
+                          <TableFilterPopover column={header.column} />
+                        )}
+                      </div>
+                    </th>
+                  );
+                })}
               </tr>
             ))}
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody>
             {table.getRowModel().rows.map((row) => (
               <tr
                 key={row.id}
-                className="border-b border-gray-300 transition-colors hover:bg-gray-100"
+                className="h-4 transition-colors hover:bg-gray-100"
               >
-                {row.getVisibleCells().map((cell) => (
-                  <td
-                    key={cell.id}
-                    className="text-md px-4 py-3 whitespace-nowrap text-gray-700"
-                  >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                ))}
+                {row.getVisibleCells().map((cell) => {
+                  return (
+                    <td
+                      key={cell.id}
+                      className="h-4 truncate border border-gray-300 px-2 py-3 text-sm text-gray-700 sm:px-3 sm:text-base"
+                      style={{
+                        maxWidth: cell.column.columnDef.size,
+                        width: cell.column.columnDef.size,
+                      }}
+                    >
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </td>
+                  );
+                })}
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <div className="flex items-center justify-between pt-5">
+
+      <footer className="flex flex-col items-center justify-between gap-2 pt-3 sm:flex-row sm:gap-0 sm:pt-5">
         <div>
-          <p className="font-bold text-neutral-600">
-            Página {table.getState().pagination.pageIndex + 1} de{"  "}
-            {table.getPageCount()}{" "}
+          <p className="text-sm font-bold text-neutral-600 sm:text-base">
+            Página {table.getState().pagination.pageIndex + 1} de{" "}
+            {table.getPageCount()}
           </p>
         </div>
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center gap-1 sm:gap-2">
           <button
             className="group flex items-center justify-center disabled:text-neutral-600"
             onClick={() => table.previousPage()}
@@ -139,27 +163,27 @@ export const Table = <T,>({ columns, data, titleContent }: IPropsTable<T>) => {
           >
             <Icon
               icon="ep:arrow-left-bold"
-              width="2em"
-              height="2em"
+              width="1.5em"
+              height="1.5em"
               className="cursor-pointer text-neutral-800 group-disabled:text-neutral-600"
             />
           </button>
 
           <button
-            className="group flex items-center justify-center disabled:text-neutral-600"
+            className="flex items-center justify-center disabled:text-neutral-600"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
             title="Ir uma página para a direita"
           >
             <Icon
               icon="ep:arrow-right-bold"
-              width="2em"
-              height="2em"
+              width="1.5em"
+              height="1.5em"
               className="cursor-pointer text-neutral-800 group-disabled:text-neutral-600"
             />
           </button>
         </div>
-      </div>
+      </footer>
     </section>
   );
 };

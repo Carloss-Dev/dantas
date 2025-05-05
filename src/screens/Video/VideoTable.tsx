@@ -36,6 +36,7 @@ export const VideoTable = () => {
     columnHelper.accessor((row) => row.tags.join(", "), {
       id: "tags",
       header: "Tags",
+      size: 150,
       meta: {
         filterLabel: "tag",
       },
@@ -53,7 +54,7 @@ export const VideoTable = () => {
       id: "actions",
       header: "Ações",
       cell: ({ row }) => (
-        <div className="flex w-fit items-center justify-center gap-1 p-2">
+        <div className="flex w-fit items-center justify-center gap-1 overflow-hidden">
           <VideoForm type="update" />
           <ConfirmModal
             title="Tem certeza que deseja excluir?"
@@ -64,9 +65,13 @@ export const VideoTable = () => {
               <Icon
                 icon="pixelarticons:trash"
                 className="cursor-pointer"
-                width="2em"
-                height="2em"
+                width="24"
+                height="24"
                 title="Excluir registro"
+                style={{
+                  minWidth: "24px",
+                  minHeight: "24px",
+                }}
               />
             }
           />
