@@ -72,10 +72,14 @@ export const TagForm = ({ defaultValues, type = "create" }: ITagFormProps) => {
           ) : (
             <Icon
               icon="lucide:edit"
-              width="2em"
-              height="2em"
+              width="24"
+              height="24"
               className="cursor-pointer"
               title="Editar registro"
+              style={{
+                minWidth: "24px",
+                minHeight: "24px",
+              }}
             />
           )
         }
